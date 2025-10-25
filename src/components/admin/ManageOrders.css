@@ -1,0 +1,125 @@
+.manage-orders-page {
+  padding: 40px 20px;
+  min-height: calc(100vh - 200px);
+}
+
+.orders-filter {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.no-orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+.no-orders-icon {
+  color: #d1d5db;
+  margin-bottom: 24px;
+}
+
+.no-orders p {
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.orders-table-container {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table thead {
+  background: #f9fafb;
+}
+
+.orders-table th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.orders-table td {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.orders-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.orders-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.order-id {
+  font-weight: 600;
+  color: #374151;
+}
+
+.item-name {
+  font-weight: 500;
+  color: #111827;
+}
+
+.order-total {
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.payment-id {
+  font-family: monospace;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.order-status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+@media (max-width: 768px) {
+  .orders-table {
+    font-size: 14px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 12px 8px;
+  }
+}

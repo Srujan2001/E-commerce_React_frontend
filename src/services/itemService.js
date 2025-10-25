@@ -50,9 +50,9 @@ const itemService = {
   },
 
   getImageUrl: (filename) => {
-    if (!filename) return '/placeholder-image.jpg';
+    if (!filename) return 'https://via.placeholder.com/300x300?text=No+Image';
     return `http://localhost:8080/api/uploads/${filename}`;
-  },
+  }
 };
 
 export default itemService;

@@ -1,0 +1,149 @@
+.manage-items-page {
+  padding: 40px 20px;
+  min-height: calc(100vh - 200px);
+}
+
+.manage-items-page .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.no-items {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.no-items p {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.items-table-container {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.items-table thead {
+  background: #f9fafb;
+}
+
+.items-table th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.items-table td {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.items-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.items-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.table-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-name {
+  font-weight: 500;
+  color: #111827;
+}
+
+.item-price {
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.stock-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #d1fae5;
+  color: #065f46;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.stock-badge.out-of-stock {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn {
+  background: #dbeafe;
+  color: #1e40af;
+  text-decoration: none;
+}
+
+.edit-btn:hover {
+  background: #bfdbfe;
+}
+
+.delete-btn {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.delete-btn:hover {
+  background: #fecaca;
+}
+
+@media (max-width: 768px) {
+  .manage-items-page .page-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .items-table {
+    font-size: 14px;
+  }
+
+  .items-table th,
+  .items-table td {
+    padding: 12px 8px;
+  }
+
+  .table-item-image {
+    width: 40px;
+    height: 40px;
+  }
+}
