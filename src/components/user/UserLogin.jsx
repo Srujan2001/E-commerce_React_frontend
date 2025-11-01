@@ -19,23 +19,30 @@ const UserLogin = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const response = await authService.userLogin(formData);
-      login({
-        email: response.email,
-        username: response.username,
-        role: 'USER',
-      });
-      toast.success('Login successful!');
-      navigate('/products');
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Login failed');
-    } finally {
-      setLoading(false);
-    }
-  };
+  e.preventDefault();
+  setLoading(true);
+  try {
+    const response = await authService.userLogin(formData);
+    
+    // FIXED: Call login first to update context
+    login({
+      email: response.email,
+      username: response.username,
+      role: 'USER',
+    });
+    
+    toast.success('Login successful!');
+    
+    // FIXED: Use setTimeout to ensure state updates before navigation
+    setTimeout(() => {
+      navigate('/products', { replace: true });
+    }, 100);
+  } catch (error) {
+    toast.error(error.response?.data?.message || 'Login failed');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="auth-page">

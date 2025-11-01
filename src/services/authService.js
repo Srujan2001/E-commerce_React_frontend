@@ -16,11 +16,12 @@ const authService = {
     const response = await api.post('/user/login', data);
     if (response.data.token) {
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify({
+      const userData = {
         email: response.data.email,
         username: response.data.username,
         role: 'USER'
-      }));
+      };
+      localStorage.setItem('user', JSON.stringify(userData));
     }
     return response.data;
   },
@@ -54,12 +55,15 @@ const authService = {
   adminLogin: async (data) => {
     const response = await api.post('/admin/login', data);
     if (response.data.token) {
+      // FIXED: Store token first
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify({
+      // FIXED: Store user with ADMIN role
+      const userData = {
         email: response.data.email,
         username: response.data.username,
         role: 'ADMIN'
-      }));
+      };
+      localStorage.setItem('user', JSON.stringify(userData));
     }
     return response.data;
   },

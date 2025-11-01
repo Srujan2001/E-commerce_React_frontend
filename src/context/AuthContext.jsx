@@ -16,28 +16,45 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('AuthContext initializing...');
     const currentUser = authService.getCurrentUser();
+    console.log('Current user from storage:', currentUser);
+    
     if (currentUser) {
       setUser(currentUser);
     }
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    console.log('User state changed:', user);
+  }, [user]);
+
   const login = (userData) => {
+    console.log('Login called with:', userData);
     setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+    console.log('User set in context and localStorage');
   };
 
   const logout = () => {
+    console.log('Logout called');
     authService.logout();
     setUser(null);
   };
 
   const isAuthenticated = () => {
-    return authService.isAuthenticated();
+    const authenticated = !!user || authService.isAuthenticated();
+    console.log('isAuthenticated:', authenticated);
+    return authenticated;
   };
 
   const hasRole = (role) => {
-    return user?.role === role;
+    if (user) {
+      return user.role === role;
+    }
+    const currentUser = authService.getCurrentUser();
+    return currentUser?.role === role;
   };
 
   const value = {

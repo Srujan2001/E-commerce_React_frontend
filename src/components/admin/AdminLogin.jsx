@@ -21,18 +21,39 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    
     try {
+      console.log('Attempting admin login...');
       const response = await authService.adminLogin(formData);
-      login({
+      console.log('Login response:', response);
+      
+      // Create user data object
+      const userData = {
         email: response.email,
         username: response.username,
         role: 'ADMIN',
-      });
-      toast.success('Login successful!');
-      navigate('/admin/dashboard');
+      };
+      
+      console.log('Setting user data:', userData);
+      
+      // Update context
+      login(userData);
+      
+      // Verify it was stored
+      const storedUser = localStorage.getItem('user');
+      console.log('Stored user:', storedUser);
+      
+      toast.success('Admin login successful!');
+      
+      // Navigate after a brief delay
+      setTimeout(() => {
+        console.log('Navigating to admin dashboard...');
+        navigate('/admin/dashboard', { replace: true });
+      }, 200);
+      
     } catch (error) {
+      console.error('Login error:', error);
       toast.error(error.response?.data?.message || 'Login failed');
-    } finally {
       setLoading(false);
     }
   };
