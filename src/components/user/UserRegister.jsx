@@ -21,19 +21,36 @@ const UserRegister = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (formData.password !== formData.confirmPassword) {
-      toast.error('Passwords do not match');
-      return;
-    }
+  if (formData.password !== formData.confirmPassword) {
+    toast.error('Passwords do not match');
+    return;
+  }
 
-    if (formData.password.length < 8) {
-      toast.error('Password must be at least 8 characters');
-      return;
-    }
+  // Enhanced password validation
+  if (formData.password.length < 8) {
+    toast.error('Password must be at least 8 characters');
+    return;
+  }
 
-    setLoading(true);
+  if (!/[A-Z]/.test(formData.password)) {
+    toast.error('Password must contain at least one uppercase letter');
+    return;
+  }
+
+  if (!/\d/.test(formData.password)) {
+    toast.error('Password must contain at least one number');
+    return;
+  }
+
+  if (!/[@$!%*?&]/.test(formData.password)) {
+    toast.error('Password must contain at least one special character (@$!%*?&)');
+    return;
+  }
+
+  setLoading(true);
+  // ... rest of the code
     try {
       const response = await authService.userRegister({
         username: formData.username,
@@ -97,7 +114,7 @@ const UserRegister = () => {
                 minLength={8}
               />
               <small className="form-hint">
-                Must be at least 8 characters with uppercase, number, and special character
+                Must contain: 8+ chars, uppercase (A-Z), number (0-9), special char (@$!%*?&)
               </small>
             </div>
 
